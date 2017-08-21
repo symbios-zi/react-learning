@@ -75,3 +75,8 @@ stof_doctrine_extensions:
     orm:
         default:
             sluggable : true
+
+
+fos_rest:
+    routing_loader:
+        include_format:       false

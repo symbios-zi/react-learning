@@ -2,15 +2,17 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Product;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class AppController extends Controller
 {
 
-    public function indexAction(Request $request)
+    public function indexAction()
     {
+
+
         // replace this example code with whatever you need
         return $this->render('app/index.html.twig');
     }

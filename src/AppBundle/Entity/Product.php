@@ -20,19 +20,10 @@ class Product
         $this->categories = new ArrayCollection();
     }
 
-
     /**
-     * @var ArrayCollection|Category[]
-     * @ORM\ManyToMany(targetEntity="Category", inversedBy="products")
-     * @ORM\JoinTable(
-     *  name="product_category",
-     *  joinColumns={
-     *      @ORM\JoinColumn(name="product", referencedColumnName="id")
-     *  },
-     *  inverseJoinColumns={
-     *      @ORM\JoinColumn(name="category", referencedColumnName="id")
-     *  }
-     * )
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="users")
+     * @ORM\JoinTable(name="category_product")
      */
     private $categories;
 
@@ -95,7 +86,6 @@ class Product
         return $this->name;
     }
 
-
     /**
      * Get slug
      *
@@ -105,7 +95,6 @@ class Product
     {
         return $this->slug;
     }
-
 
     /**
      * @return \Doctrine\Common\Collections\ArrayCollection|Category[]
@@ -121,27 +110,16 @@ class Product
      */
     public function removeCategory(Category $category)
     {
-        if (false === $this->categories->contains($category)) {
-            return;
-        }
         $this->categories->removeElement($category);
-        $category->removeProduct($this);
     }
 
-
     /**
-     * Link category
      * @param Category $category
      */
     public function addCategory(Category $category)
     {
-        if (true === $this->categories->contains($category)) {
-            return;
-        }
         $this->categories->add($category);
-        $category->addProduct($this);
     }
-
 
 }
 

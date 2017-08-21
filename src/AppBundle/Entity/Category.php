@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Category
@@ -15,18 +16,8 @@ class Category
 {
 
     /**
-     * @var \Doctrine\Common\Collections\Collection|Product[]
-     *
-     * @ORM\ManyToMany(targetEntity="Product", inversedBy="categories")
-     * @ORM\JoinTable(
-     *  name="category_product",
-     *  joinColumns={
-     *      @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     *  },
-     *  inverseJoinColumns={
-     *      @ORM\JoinColumn(name="product_id", referencedColumnName="id")
-     *  }
-     * )
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="Product", mappedBy="products")
      */
     protected $products;
 
@@ -54,14 +45,15 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     * @Gedmo\Slug(fields={"name"}, separator="_")
+     * @ORM\Column(name="slug", type="string", length=128, nullable=false, unique=true)
      */
     private $slug;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="sort", type="integer")
+     * @ORM\Column(name="sort", type="integer", options={"default" : 0})
      */
     private $sort;
 
@@ -75,9 +67,9 @@ class Category
     /**
      * @var bool
      *
-     * @ORM\Column(name="isPublished", type="boolean")
+     * @ORM\Column(name="isPublished", type="boolean", options={"default" : 1})
      */
-    private $isPublished;
+    private $isPublished = 1;
 
 
     /**
@@ -218,30 +210,6 @@ class Category
         return $this->products;
     }
 
-    /**
-     * Remove product
-     * @param Product $product
-     */
-    public function removeProduct(Product $product)
-    {
-        if (false === $this->products->contains($product)) {
-            return;
-        }
 
-        $this->products->removeElement($product);
-        $product->removeMovie($this);
-    }
-
-    /**
-     * @param Product $product
-     */
-    public function addProduct(Product $product)
-    {
-        if (true === $this->products->contains($product)) {
-            return;
-        }
-        $this->products->add($product);
-        $product->addMovie($this);
-    }
 }
 
