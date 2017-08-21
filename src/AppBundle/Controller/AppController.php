@@ -9,9 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class AppController extends Controller
 {
 
-    /**
-     * @Route("/", name="frontpage")
-     */
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need

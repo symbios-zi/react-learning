@@ -1,3 +1,6 @@
 app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+    path: /{any}
+    methods: [ 'GET' ]
+    requirements: { any: '.*' }
+    defaults:
+        _controller: AppBundle:App:index
