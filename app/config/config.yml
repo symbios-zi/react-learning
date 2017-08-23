@@ -76,7 +76,9 @@ stof_doctrine_extensions:
         default:
             sluggable : true
 
-
 fos_rest:
+    format_listener: true
     routing_loader:
-        include_format:       false
+        default_format: json
+        include_format: false
+

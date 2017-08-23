@@ -3,18 +3,28 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Product;
+use Symfony\Component\Serializer\Serializer;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\View\View;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+
 
 class ProductController extends FOSRestController
 {
-    public function cgetAction()
+    public function getProductsAction()
     {
-        $articles = array('bim', 'bam', 'bingo');
-        return new Response($articles);
+        $product = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->findOneBy([]);
 
+        $serializer = new Serializer(
+            array(new ObjectNormalizer()),
+            array('json' => new JsonEncoder())
+        );
+
+        $jsonContent = $serializer->serialize($product, 'json');
+
+        return new JsonResponse($jsonContent);
     }
-
-
 }
