@@ -12,19 +12,33 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class ProductController extends FOSRestController
 {
-    public function getProductsAction()
+
+    /**
+     * All products
+     * @return JsonResponse
+     */
+    public function getProductsAction(): JsonResponse
     {
         $product = $this->getDoctrine()
             ->getRepository(Product::class)
-            ->findOneBy([]);
+            ->findAll();
 
+        $jsonContent = $this->convertToJson($product);
+
+        return new JsonResponse($jsonContent);
+    }
+
+    /**
+     * @param $product
+     * @return string
+     */
+    private function convertToJson($product): string
+    {
         $serializer = new Serializer(
             array(new ObjectNormalizer()),
             array('json' => new JsonEncoder())
         );
 
-        $jsonContent = $serializer->serialize($product, 'json');
-
-        return new JsonResponse($jsonContent);
+        return $serializer->serialize($product, 'json');
     }
 }

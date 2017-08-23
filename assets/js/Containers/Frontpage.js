@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
-import axios from 'axios';
+import ProductsFrontpageList from '../Components/ProductsFrontpageList'
+
+
 
 class Frontpage extends Component {
 
-    componentDidMount(){
-        axios.get('/api/v1/products')
-            .then(response => {
-                let myData = JSON.parse(response.data);
-                console.log(myData.name);
-            })
-            .catch((error) => {
-                console.log("error",error)
-            })
-    }
 
     render() {
         return (
@@ -27,6 +19,7 @@ class Frontpage extends Component {
                         </div>
                         <div className="col-md-9">
                             <h1>Front page</h1>
+                            <ProductsFrontpageList/>
                         </div>
                     </div>
                 </div>
