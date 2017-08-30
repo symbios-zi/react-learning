@@ -11,8 +11,6 @@ class AppController extends Controller
 
     public function indexAction()
     {
-
-
         // replace this example code with whatever you need
         return $this->render('app/index.html.twig');
     }
