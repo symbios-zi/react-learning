@@ -7,7 +7,7 @@ class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
+            username: '',
             errors: {},
             isLoading: false,
             invalid: false
@@ -35,8 +35,7 @@ class LoginForm extends Component {
         e.preventDefault();
         this.setState({ errors: {}, isLoading: true });
         this.props.login(this.state).then(
-            (res) => this.context.router.push('/'),
-            (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
+            (res) => this.context.router.history.push('/')
         );
     }
 
@@ -49,19 +48,19 @@ class LoginForm extends Component {
                     </div>
                     <div className="panel-body">
                         <div className="form-group">
-                            <label htmlFor="email">Email:</label>
+                            <label htmlFor="username">Email:</label>
                             <input
                                 type="email"
-                                name="email"
+                                name="_username"
                                 className="form-control"
                                 onChange={this.onChange}
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="password">Password:</label>
+                            <label htmlFor="_password">Password:</label>
                             <input
                                 type="password"
-                                name="password"
+                                name="_password"
                                 className="form-control"
                                 onChange={this.onChange}
                             />
@@ -75,6 +74,14 @@ class LoginForm extends Component {
             </form>
         );
     }
+}
+
+LoginForm.propTypes = {
+    login: React.PropTypes.func.isRequired
+}
+
+LoginForm.contextTypes = {
+    router: React.PropTypes.object.isRequired
 }
 
 export default connect(null, { login })(LoginForm);

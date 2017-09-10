@@ -7,7 +7,7 @@ class Menu extends Component {
             <nav className="navbar navbar-default">
                 <ul className="nav navbar-nav">
                     <li><NavLink to="/" activeClassName="active">Index page</NavLink></li>
-                    <li><NavLink to="/about" activeClassName="active">About</NavLink></li>
+                    <li><NavLink to="/personal" activeClassName="active">Personal</NavLink></li>
                 </ul>
             </nav>
         );

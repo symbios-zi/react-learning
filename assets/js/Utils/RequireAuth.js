@@ -10,13 +10,13 @@ export default function(ComposedComponent) {
                     type: 'error',
                     text: 'Ошибка. Нужно авторизоваться'
                 });
-                this.context.router.push('/login');
+                this.context.router.history.push('/login');
             }
         }
 
         componentWillUpdate(nextProps) {
             if (!nextProps.isAuthenticated) {
-                this.context.router.push('/');
+                this.context.router.history.push('/');
             }
         }
 
@@ -38,7 +38,7 @@ export default function(ComposedComponent) {
 
     function mapStateToProps(state) {
         return {
-            isAuthenticated: state.auth.isAuthenticated
+            isAuthenticated: state.Auth.isAuthenticated
         };
     }
 
