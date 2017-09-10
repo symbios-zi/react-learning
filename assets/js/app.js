@@ -17,6 +17,7 @@ import NotFound from './Containers/NotFound';
 import Register from './Containers/Register';
 import Personal from './Containers/Personal';
 import Login from './Containers/Login';
+import About from './Containers/About';
 
 
 const store = createStore(
@@ -39,9 +40,9 @@ ReactDOM.render((
         <Switch>
             <Route exact path="/" component={Frontpage} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/about" component={About} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/personal" component={requireAuth(Personal)} />
-
             <Route component={NotFound} />
         </Switch>
         </BrowserRouter>

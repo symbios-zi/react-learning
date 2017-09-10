@@ -1,5 +1,45 @@
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
-
 @import './products_frontpage.scss';
 
 
+.container-fluid {
+    max-width: 1100px;
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+
+.hello-section {
+    background: linear-gradient(180deg,  #45CCFF, #169fda);
+    color: #fff;
+    padding: 70px 0;
+}
+
+.hello-section__message {
+    font-size: 2.5em;
+}
+
+header {
+    position: fixed;
+    background: #fff;
+    top:0;
+    z-index:1000;
+    width:100%;
+}
+
+.header__logo {
+    img {
+        width: 100%;
+        height:auto;
+    }
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.login-buttons__item {
+    float: right;
+}
