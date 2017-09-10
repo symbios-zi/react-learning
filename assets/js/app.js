@@ -8,6 +8,7 @@ import Frontpage from './Containers/Frontpage';
 import About from './Containers/About';
 import NotFound from './Containers/NotFound';
 import Register from './Containers/Register';
+import Login from './Containers/Login';
 import rootReducer from './rootReducer';
 
 
@@ -25,6 +26,7 @@ ReactDOM.render((
         <Switch>
             <Route exact path="/" component={Frontpage} />
             <Route exact path="/about" component={About} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route component={NotFound} />
         </Switch>
